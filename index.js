@@ -1,5 +1,4 @@
-import { intro, isCancel, outro, text, cancel } from "@clack/prompts";
-import { setMaxListeners } from "events";
+import { intro, isCancel, outro, text, cancel, spinner } from "@clack/prompts";
 import { setTimeout } from 'timers/promises';
 
 async function main() {
@@ -8,83 +7,62 @@ async function main() {
     /**
      * function for input work duration
      */
-    const workDurationOpts = {
+    const workDuration = await text({
         message: "Enter work duration in minutes:",
         placeholder: "",
         validate(value) {
             if (isNaN(value) || value <= 0) return "Please enter a correct number.";
         }
-    }
-
-    const workDuration = await text(workDurationOpts);
+    });
 
     /**
      * function for input break duration
      */
-    const breakDurationOpts = {
+    const breakDuration = await text({
         message: "Enter break duration in minutes: ",
         placeholder: "",
         validate(value) {
             if (isNaN(value) || value <= 0) return "Please enter a correct number.";
         }
-    }
-
-    const breakDuration = await text(breakDurationOpts);
+    });
 
     /**
      * function for input cycle duration
      */
-    const cyclesOpts = {
+    const cycles = await text({
         message: "Enter number of cycles: ",
         placeholder: "",
         validate(value) {
             if (isNaN(value) || value <= 0) return "Please enter a correct number.";
         }
-    }
-    const cycles = await text(cyclesOpts);
-
-
-    if (isCancel(workDuration)) {
-        cancel("Operation Cancelled.");
-        process.exit(0);
-    }
+    });
 
     /** Looping set time */
     for (let i = 0; i < cycles; i++) {
         console.log(`\nCycles ${i + 1} of ${cycles}`);
-        console.log(`Starting work timer for ${workDuration} minutes.`)
-
-        const workDurationInMs = workDuration * 60 * 1000;
-        const workEndTime = Date.now() + workDurationInMs;
-
-        while (Date.now() < workEndTime) {
-            const remainingTime = Math.max(0, workEndTime - Date.now());
-            const minutes = Math.floor(remainingTime / 60000);
-            const seconds = Math.floor((remainingTime % 6000) / 1000);
-            console.log(`Work timer: ${minutes}:${seconds < 10 ? '0' : ''}${seconds} remaining.`);
-            await setTimeout(1000);
-        }
-
-        console.log('Work timer ended. Time for a break')
-        console.log(`Starting break timer for ${breakDuration} minutes`)
-
-
-        const breakDurationInMs = breakDurationInMs * 60 * 1000
-        const breakEndTime = Date.now() + breakDurationInMs
-        while (Date.now() < breakEndTime) {
-            const remainingTime = Math.max(0, breakEndTime - Date.now());
-            const minutes = Math.floor(remainingTime / 60000);
-            const seconds = Math.floor((remainingTime % 60000) / 1000);
-            console.log(`Break timer: ${minutes}:${seconds < 10 ? '0' : ''}${seconds} remaining`);
-            await setTimeout(1000)
-        }
-
-        console.log('Break timer ended')
+        await startTimer(workDuration, 'Work');
+        await startTimer(breakDuration, 'Break');
     }
 
+    outro("All pomodoro cycles has ended, you've done all of your tasks, happy rest🥱")
+}
 
-    outro("The cycle is Complete!")
-    outro("Congratulation sir, you've done all of your tasks, happy rest🥱");
+/** Function setTimer */
+async function startTimer(duration, type) {
+    const durationInMs = duration * 60 * 1000;
+    const endTime = Date.now() + durationInMs;
+    const timerSpinner = spinner();
+    timerSpinner.start(`${type} timer started for ${duration} minutes...`);
+
+    while (Date.now() < endTime) {
+        const remainingTime = Math.max(0, endTime - Date.now());
+        const minutes = Math.floor(remainingTime / 60000);
+        const seconds = Math.floor((remainingTime % 60000) / 1000);
+        timerSpinner.message(`${type} timer: ${minutes}:${seconds < 10 ? '0' : ''}${seconds} remaining.`);
+        await setTimeout(1000);
+    }
+
+    timerSpinner.stop(`${type} timer ended. ${type === 'Work' ? 'a break' : 'work'}!`);
 }
 
 main().catch(console.error);
