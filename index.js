@@ -44,7 +44,7 @@ async function main() {
         await startTimer(breakDuration, 'Break');
     }
 
-    outro("All pomodoro cycles has ended, you've done all of your tasks, happy rest🥱")
+    outro("All pomodoro cycles has ended, happy rest sir😁")
 }
 
 /** Function setTimer */
