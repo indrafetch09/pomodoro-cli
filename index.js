@@ -27,6 +27,10 @@ async function main() {
         }
     });
 
+    const workDurationNum = Number(workDuration);
+    const breakDurationNum = Number(breakDuration);
+    const cyclesNum = Number(cycles);
+
     /**
      * function for input cycle duration
      */
@@ -39,12 +43,15 @@ async function main() {
     });
 
     /** Looping set time */
-    for (let i = 0; i < cycles; i++) {
-        console.log(`\nCycles ${i + 1} of ${cycles}`);
-        await startTimer(workDuration, 'Work');
-        await startTimer(breakDuration, 'Break');
+    for (let i = 0; i < cyclesNum; i++) {
+        console.log(`\nCycles ${i + 1} of ${cyclesNum}`);
+        await startTimer(workDurationNum, 'Work');
+
+        await notify('Break started', `Break for ${breakDurationNum} minute(s)`);
+        await startTimer(breakDurationNum, 'Break');
     }
 
+    await notify('Pomodoro finished', 'All pomodoro cycles have ended, happy rest sir😁');
     outro("All pomodoro cycles has ended, happy rest sir😁")
 }
 
@@ -64,6 +71,45 @@ async function startTimer(duration, type) {
     }
 
     timerSpinner.stop(`${type} timer ended. ${type === 'Work' ? 'time for a break' : 'work'}!`);
+}
+
+/**
+ * notify: try to send a desktop notification using `node-notifier` (if installed),
+ * otherwise try `notify-send` (Linux), otherwise fall back to console message + bell.
+ */
+async function notify(title, message) {
+    try {
+        const mod = await import('node-notifier');
+        const notifier = mod?.default ?? mod;
+        if (typeof notifier === 'function' || typeof notifier === 'object') {
+            try {
+                // node-notifier supports an object call
+                notifier.notify({ title, message });
+                return;
+            } catch (e) {
+                // fall through to other methods
+            }
+        }
+    } catch (e) {
+        // module not installed, continue to next option
+    }
+
+    try {
+        const { execSync } = await import('child_process');
+        try {
+            execSync(`notify-send "${title.replace(/"/g, '\\"')}" "${message.replace(/"/g, '\\"')}"`);
+            return;
+        } catch (e) {
+            // notify-send may not exist or fail; fall back
+        }
+    } catch (e) {
+        // ignore
+    }
+
+    try {
+        process.stdout.write('\x07');
+    } catch (e) { }
+    console.log(`${title}: ${message}`);
 }
 
 main().catch(console.error);
