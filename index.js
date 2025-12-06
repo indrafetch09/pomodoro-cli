@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { intro, isCancel, outro, text, cancel, spinner } from "@clack/prompts";
 import { setTimeout } from 'timers/promises';
 
