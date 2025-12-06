@@ -1,6 +1,9 @@
 #!/usr/bin/env node
-import { intro, isCancel, outro, text, cancel, spinner } from "@clack/prompts";
+import { intro, outro, text, spinner } from "@clack/prompts";
 import { setTimeout } from 'timers/promises';
+import pkg from 'node-notifier';
+const { notify } = pkg;
+
 
 async function main() {
     intro("🍅 Welcome to Pomodoro Timer CLI");
@@ -27,10 +30,6 @@ async function main() {
         }
     });
 
-    const workDurationNum = Number(workDuration);
-    const breakDurationNum = Number(breakDuration);
-    const cyclesNum = Number(cycles);
-
     /**
      * function for input cycle duration
      */
@@ -41,6 +40,11 @@ async function main() {
             if (isNaN(value) || value <= 0) return "Please enter a correct number.";
         }
     });
+
+    /** Define Number */
+    const workDurationNum = Number(workDuration);
+    const breakDurationNum = Number(breakDuration);
+    const cyclesNum = Number(cycles);
 
     /** Looping set time */
     for (let i = 0; i < cyclesNum; i++) {
@@ -73,43 +77,5 @@ async function startTimer(duration, type) {
     timerSpinner.stop(`${type} timer ended. ${type === 'Work' ? 'time for a break' : 'work'}!`);
 }
 
-/**
- * notify: try to send a desktop notification using `node-notifier` (if installed),
- * otherwise try `notify-send` (Linux), otherwise fall back to console message + bell.
- */
-async function notify(title, message) {
-    try {
-        const mod = await import('node-notifier');
-        const notifier = mod?.default ?? mod;
-        if (typeof notifier === 'function' || typeof notifier === 'object') {
-            try {
-                // node-notifier supports an object call
-                notifier.notify({ title, message });
-                return;
-            } catch (e) {
-                // fall through to other methods
-            }
-        }
-    } catch (e) {
-        // module not installed, continue to next option
-    }
-
-    try {
-        const { execSync } = await import('child_process');
-        try {
-            execSync(`notify-send "${title.replace(/"/g, '\\"')}" "${message.replace(/"/g, '\\"')}"`);
-            return;
-        } catch (e) {
-            // notify-send may not exist or fail; fall back
-        }
-    } catch (e) {
-        // ignore
-    }
-
-    try {
-        process.stdout.write('\x07');
-    } catch (e) { }
-    console.log(`${title}: ${message}`);
-}
 
 main().catch(console.error);
