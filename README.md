@@ -21,6 +21,11 @@ Mohon kritik dan sarannya.
 
 Cara termudah untuk mencoba aplikasi ini tanpa perlu menginstall apapun di komputer kamu (membutuhkan Node.js terinstall):
 
+Kalo kamu belum install node js, silahkan ke link berikut:
+
+- Install node js:
+  https://nodejs.org/en/download
+
 ```bash
 npx github:indrafetch09/pomodoro-cli
 ```
