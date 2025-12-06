@@ -22,13 +22,13 @@ Mohon kritik dan sarannya.
 Cara termudah untuk mencoba aplikasi ini tanpa perlu menginstall apapun di komputer kamu (membutuhkan Node.js terinstall):
 
 ```bash
-npx github:username-kamu/nama-repo-kamu
+npx github:indrafetch09/pomodoro-cli
 ```
 
 ## Cara pakai di local (Local Install)
 
 ```bash
-npm install -g github:username-kamu/nama-repo-kamu
+npm install -g github:indrafetch09/pomodoro-cli
 ```
 
 Lalu ketik:
