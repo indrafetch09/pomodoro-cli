@@ -63,7 +63,7 @@ async function startTimer(duration, type) {
         await setTimeout(1000);
     }
 
-    timerSpinner.stop(`${type} timer ended. ${type === 'Work' ? 'a break' : 'work'}!`);
+    timerSpinner.stop(`${type} timer ended. ${type === 'Work' ? 'time for a break' : 'work'}!`);
 }
 
 main().catch(console.error);
