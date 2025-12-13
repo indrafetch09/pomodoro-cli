@@ -1,13 +1,10 @@
 #!/usr/bin/env node
 import { intro, outro, text, spinner } from "@clack/prompts";
-import { setTimeout } from 'timers/promises';
-import pkg from 'node-notifier';
-const { notify } = pkg;
-
+import { setTimeout } from "timers/promises";
+import { notify } from "./notify.js";
 
 async function main() {
     intro("🍅 Welcome to Pomodoro Timer CLI");
-
 
     const workDuration = await text({
         message: "Enter work duration in minutes:",
@@ -41,12 +38,12 @@ async function main() {
 
     for (let i = 0; i < cyclesNum; i++) {
         console.log(`\nCycles ${i + 1} of ${cyclesNum}`);
-        await startTimer(workDurationNum, 'Work');
+        await startTimer(workDurationNum, "Work");
 
         notify('Break started', `Break for ${breakDurationNum} minute(s)`);
-        await startTimer(breakDurationNum, 'Break');
+        await startTimer(breakDurationNum, "Break");
     }
-    notify('Pomodoro finished', 'All pomodoro cycles have ended, happy rest sir😁');
+    notify("Pomodoro finished', 'All pomodoro cycles have ended, happy rest sir😁");
     outro("All pomodoro cycles has ended, happy rest sir😁")
 }
 
