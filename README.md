@@ -2,7 +2,7 @@
 
 Aplikasi **Pomodoro Timer** sederhana, interaktif, dan ringan yang bisa berjalan langsung di terminal (Command Line Interface).
 
-Dibuat untuk developer yang ingin tetap fokus tanpa perlu meninggalkan terminal.
+Dibuat untuk developer yang ingin tetap fokus tanpa perlu buka app pomodoro di website.
 
 Note:
 Aplikasi ini saya buat dengan tujuan belajar Javasrcipt asynchronous function, dan kebetulan saya nemu referensinya di blog Medium, linknya ada di bagian Referensi.
@@ -13,8 +13,8 @@ Mohon kritik dan sarannya.
 
 - **Interactive UI:** Menggunakan `@clack/prompts` untuk tampilan yang bersih dan modern.
 - **Customizable:** Atur durasi kerja, istirahat, dan jumlah siklus (cycle) sesuai keinginan.
-- **Real-time Countdown:** Timer berjalan mundur detik demi detik (tanpa spamming baris baru).
-- **Cross-Platform:** Berjalan lancar di Windows, macOS, dan Linux (termasuk Arch Linux!).
+- **Real-time Countdown:** Timer berjalan mundur detik demi detik.
+- **Cross-Platform:** Berjalan lancar di Windows, macOS, dan Linux.
 - **Cancel Handling:** Aman dimatikan kapan saja dengan `Ctrl+C`.
 
 ## 🚀 Cara Pakai (Tanpa Install)
