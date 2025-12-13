@@ -8,9 +8,7 @@ const { notify } = pkg;
 async function main() {
     intro("🍅 Welcome to Pomodoro Timer CLI");
 
-    /**
-     * function for input work duration
-     */
+
     const workDuration = await text({
         message: "Enter work duration in minutes:",
         placeholder: "",
@@ -19,9 +17,7 @@ async function main() {
         }
     });
 
-    /**
-     * function for input break duration
-     */
+
     const breakDuration = await text({
         message: "Enter break duration in minutes: ",
         placeholder: "",
@@ -30,9 +26,7 @@ async function main() {
         }
     });
 
-    /**
-     * function for input cycle duration
-     */
+
     const cycles = await text({
         message: "Enter number of cycles: ",
         placeholder: "",
@@ -41,24 +35,21 @@ async function main() {
         }
     });
 
-    /** Define Number */
     const workDurationNum = Number(workDuration);
     const breakDurationNum = Number(breakDuration);
     const cyclesNum = Number(cycles);
 
-    /** Looping set time */
     for (let i = 0; i < cyclesNum; i++) {
         console.log(`\nCycles ${i + 1} of ${cyclesNum}`);
         await startTimer(workDurationNum, 'Work');
 
-        await notify('Break started', `Break for ${breakDurationNum} minute(s)`);
+        notify('Break started', `Break for ${breakDurationNum} minute(s)`);
         await startTimer(breakDurationNum, 'Break');
     }
-    await notify('Pomodoro finished', 'All pomodoro cycles have ended, happy rest sir😁');
+    notify('Pomodoro finished', 'All pomodoro cycles have ended, happy rest sir😁');
     outro("All pomodoro cycles has ended, happy rest sir😁")
 }
 
-/** Function setTimer */
 async function startTimer(duration, type) {
     const durationInMs = duration * 60 * 1000;
     const endTime = Date.now() + durationInMs;
