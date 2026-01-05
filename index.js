@@ -43,7 +43,7 @@ async function main() {
         notify('Break started', `Break for ${breakDurationNum} minute(s)`);
         await startTimer(breakDurationNum, "Break");
     }
-    notify("Pomodoro finished', 'All pomodoro cycles have ended, happy rest sir😁");
+    notify("Pomodoro finished, All pomodoro cycles have ended, happy rest sir😁");
     outro("All pomodoro cycles has ended, happy rest sir😁")
 }
 
