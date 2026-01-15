@@ -4,21 +4,25 @@ import { execFile } from "child_process";
 const notifier = pkg;
 
 export function notify(title = "Pomodoro CLI", message = "", cb) {
-    try {
-        if (notifier && typeof notifier.notify === "function") {
-            notifier.notify({ title, message, sound: true }, (err) => {
-                if (err) {
-                    tryNotifySend(title, message, cb);
-                } else if (typeof cb === "function") {
-                    cb(null);
-                }
-            });
-            return;
+    const p = new Promise((resolve, reject) => {
+        try {
+            if (notifier && typeof notifier.notify === "function") {
+                notifier.notify({ title, message, sound: true }, (err) => {
+                    if (err) {
+                        fallBackNotify(title, message)
+                            .then(() => playSound().then(resolve).catch(resolve))
+                    } else if (typeof cb === "function") {
+                        cb(null);
+                    }
+                });
+                return;
+            }
+        } catch (e) {
         }
-    } catch (e) {
-    }
 
-    tryNotifySend(title, message, cb);
+        tryNotifySend(title, message, cb);
+    });
+    return p;
 }
 
 function tryNotifySend(title, message, cb) {

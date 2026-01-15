@@ -16,5 +16,8 @@
   "dependencies": {
     "@clack/prompts": "^0.11.0",
     "node-notifier": "^10.0.1"
+  },
+  "devDependencies": {
+    "@types/node-notifier": "^8.0.5"
   }
 }
