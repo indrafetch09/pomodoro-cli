@@ -45,6 +45,11 @@ function promisifyNotify() {
     // return new Promise from notifier.notify and set params resolve, reject
 }
 
+function promisifyNotify() {
+    return new Promise
+    // return new Promise from notifier.notify and set params resolve, reject
+}
+
 function tryNotifySend(title, message, cb) {
     // return new Promise set params resolve, reject
     execFile("notify-send", [ title, message ], (err) => {
