@@ -18,7 +18,7 @@ export function notify(title = "Pomodoro CLI", message = "", cb) {
             return;
 =======
     const p = new Promise((resolve, reject) => {
-        // twice try catch block 
+        // twice try catch block
         try {
             if (notifier && typeof notifier.notify === "function") {
                 notifier.notify({ title, message, sound: true }, (err) => {
