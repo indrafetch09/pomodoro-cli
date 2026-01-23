@@ -5,7 +5,6 @@ const notifier = pkg;
 
 //TODO: refactor function notify
 export function notify(title = "Pomodoro CLI", message = "", cb) {
-<<<<<<< Updated upstream
     try {
         if (notifier && typeof notifier.notify === "function") {
             notifier.notify({ title, message, sound: true }, (err) => {
@@ -16,23 +15,6 @@ export function notify(title = "Pomodoro CLI", message = "", cb) {
                 }
             });
             return;
-=======
-    const p = new Promise((resolve, reject) => {
-        // twice try catch block
-        try {
-            if (notifier && typeof notifier.notify === "function") {
-                notifier.notify({ title, message, sound: true }, (err) => {
-                    if (err) {
-                        fallBackNotify(title, message)
-                            .then(() => playSound().then(resolve).catch(resolve))
-                    } else if (typeof cb === "function") {
-                        cb(null);
-                    }
-                });
-                return;
-            }
-        } catch (e) {
->>>>>>> Stashed changes
         }
     } catch (e) {
     }
@@ -45,10 +27,6 @@ function promisifyNotify() {
     // return new Promise from notifier.notify and set params resolve, reject
 }
 
-function promisifyNotify() {
-    return new Promise
-    // return new Promise from notifier.notify and set params resolve, reject
-}
 
 function tryNotifySend(title, message, cb) {
     // return new Promise set params resolve, reject
