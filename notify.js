@@ -5,7 +5,7 @@ import { platform } from "os";
 const notifier = pkg;
 const OS_PLATFORM = platform();
 
-export function notify(title = "", message = "", cb) {
+export function notify(title = "Pomodoro CLI started", message = "", cb) {
     try {
         if (notifier && typeof notifier.notify === "function") {
             notifier.notify({ title, message, sound: true },
