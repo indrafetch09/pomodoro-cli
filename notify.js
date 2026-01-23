@@ -1,39 +1,52 @@
 import pkg from "node-notifier";
 import { execFile } from "child_process";
+import { platform } from "os";
 
 const notifier = pkg;
+const OS_PLATFORM = platform();
 
-//TODO: refactor function notify
-export function notify(title = "Pomodoro CLI", message = "", cb) {
+export function notify(title = "", message = "", cb) {
     try {
         if (notifier && typeof notifier.notify === "function") {
-            notifier.notify({ title, message, sound: true }, (err) => {
-                if (err) {
-                    tryNotifySend(title, message, cb);
-                } else if (typeof cb === "function") {
-                    cb(null);
-                }
-            });
+            notifier.notify({ title, message, sound: true },
+                (err) => {
+                    if (err) {
+                        if (OS_PLATFORM === "win32") {
+                            fallbackBell(title, message, cb);
+                        } else {
+                            tryNotifySend(title, message, cb);
+                        }
+                    } else if (typeof cb === "function") {
+                        cb(null);
+                    }
+                });
             return;
         }
     } catch (e) {
     }
 
-    tryNotifySend(title, message, cb);
+    // If notifier is not available, use platform-specific fallback
+    if (OS_PLATFORM === "win32") {
+        fallbackBell(title, message, cb);
+    } else {
+        tryNotifySend(title, message, cb);
+    }
 }
 
-function promisifyNotify() {
-    return new Promise
-    // return new Promise from notifier.notify and set params resolve, reject
+// Fallback for Windows and other systems without "notify-send"
+function fallbackBell(title, message, cb) {
+    console.log(`\x07${title}: ${message}`);
+    if (typeof cb === "function") cb(null);
 }
 
 
+// Linux fallback using notify-send
 function tryNotifySend(title, message, cb) {
-    // return new Promise set params resolve, reject
     execFile("notify-send", [ title, message ], (err) => {
         if (err) {
-            console.log(`\x07${title}: ${message}`);
+            fallbackBell(title, message, cb);
+        } else if (typeof cb === "function") {
+            cb(null);
         }
-        if (typeof cb === "function") cb(err);
     });
 }
