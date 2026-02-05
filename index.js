@@ -40,7 +40,7 @@ async function main() {
         console.log(`wnCycles ${i + 1} of ${cyclesNum}`);
         await startTimer(workDurationNum, "Work");
 
-        notify('Break started', `Break for ${breakDurationNum} minute(s)`);
+        notify("Break started", `Break for ${breakDurationNum} minute(s)`);
         await startTimer(breakDurationNum, "Break");
     }
     notify("Pomodoro finished, All pomodoro cycles have ended, happy rest sir😁");

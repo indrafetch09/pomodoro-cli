@@ -1,7 +1,9 @@
 import pkg from "node-notifier";
 import { execFile } from "child_process";
+import { platform } from "os";
 
 const notifier = pkg;
+const OS_PLATFORM = platform();
 
 export function notify(title = "Pomodoro CLI", message = "", cb) {
     const p = new Promise((resolve, reject) => {
@@ -25,11 +27,14 @@ export function notify(title = "Pomodoro CLI", message = "", cb) {
     return p;
 }
 
+
+// Linux fallback using notify-send
 function tryNotifySend(title, message, cb) {
     execFile("notify-send", [ title, message ], (err) => {
         if (err) {
-            console.log(`\x07${title}: ${message}`);
+            fallbackBell(title, message, cb);
+        } else if (typeof cb === "function") {
+            cb(null);
         }
-        if (typeof cb === "function") cb(err);
     });
 }
