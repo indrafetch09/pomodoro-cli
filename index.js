@@ -37,7 +37,7 @@ async function main() {
     const cyclesNum = Number(cycles);
 
     for (let i = 0; i < cyclesNum; i++) {
-        console.log(`\nCycles ${i + 1} of ${cyclesNum}`);
+        console.log(`wnCycles ${i + 1} of ${cyclesNum}`);
         await startTimer(workDurationNum, "Work");
 
         notify("Break started", `Break for ${breakDurationNum} minute(s)`);

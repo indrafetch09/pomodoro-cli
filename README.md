@@ -1,11 +1,11 @@
 # 🍅 Pomodoro CLI
 
-Aplikasi **Pomodoro Timer** sederhana, interaktif, dan ringan yang bisa berjalan langsung di terminal (Command Line Interface).
+Pomodoro CLI adalah aplikasi timer sederhana, interaktif, dan ringan yang bisa berjalan langsung di terminal (Command Line Interface).
 
 Dibuat untuk developer yang ingin tetap fokus tanpa perlu buka app pomodoro di website.
 
 Note:
-Aplikasi ini saya buat dengan tujuan belajar Javasrcipt asynchronous function, dan kebetulan saya nemu referensinya di blog Medium, linknya ada di bagian Referensi.
+Aplikasi ini saya buat dengan tujuan belajar Javasrcipt asynchronous function, dan kebetulan saya nemu referensinya di blog Medium, linknya ada di bagian paling bawah.
 
 Mohon kritik dan sarannya.
 
