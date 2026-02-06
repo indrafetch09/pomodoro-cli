@@ -43,8 +43,8 @@ async function main() {
         notify("Break started", `Break for ${breakDurationNum} minute(s)`);
         await startTimer(breakDurationNum, "Break");
     }
-    notify("Pomodoro finished, All pomodoro cycles have ended, happy rest sir😁");
-    outro("All pomodoro cycles has ended, happy rest sir😁")
+    notify("Pomodoro finished, All pomodoro cycles has ended, happy rest sir😁");
+    outro("All pomodoro cycles has ended, happy rest sir😁");
 }
 
 async function startTimer(duration, type) {
@@ -61,7 +61,7 @@ async function startTimer(duration, type) {
         await setTimeout(1000);
     }
 
-    timerSpinner.stop(`${type} timer ended. ${type === 'Work' ? 'time for a break' : 'work'}!`);
+    timerSpinner.stop(`${type} timer ended. ${type === 'Work' ? 'time for a break' : 'time for work'}!`);
 }
 
 

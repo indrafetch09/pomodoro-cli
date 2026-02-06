@@ -28,7 +28,7 @@ export function notify(title = "Pomodoro CLI", message = "", cb) {
 }
 
 
-// Linux fallback using notify-send
+// Global fallback notify
 function tryNotifySend(title, message, cb) {
     execFile("notify-send", [ title, message ], (err) => {
         if (err) {
