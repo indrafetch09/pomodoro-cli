@@ -1,5 +1,6 @@
 import pkg from "node-notifier";
 import { execFile } from "child_process";
+import { platform } from "os";
 
 const notifier = pkg;
 
@@ -9,30 +10,60 @@ export function notify(title = "Pomodoro CLI", message = "", cb) {
             if (notifier && typeof notifier.notify === "function") {
                 notifier.notify({ title, message, sound: true }, (err) => {
                     if (err) {
-                        fallBackNotify(title, message)
-                            .then(() => playSound().then(resolve).catch(resolve))
+                        tryNotifySend(title, message, cb).then(resolve).catch(resolve);
                     } else if (typeof cb === "function") {
                         cb(null);
+                        resolve();
                     }
                 });
                 return;
             }
         } catch (e) {
+            tryNotifySend(title, message, cb).then(resolve).catch(resolve);
         }
 
-        tryNotifySend(title, message, cb);
     });
     return p;
 }
 
 
-// Global fallback notify
+function fallbackBell(title, message, cb) {
+    console.log(`\n🔔 ${title}`);
+    console.log(`📢 ${message}\n`);
+
+    process.stdout.write('\x07');
+
+    if (typeof cb === "function") {
+        cb(null);
+    }
+}
+
 function tryNotifySend(title, message, cb) {
-    execFile("notify-send", [ title, message ], (err) => {
-        if (err) {
+    return new Promise((resolve) => {
+        const os = platform();
+
+        if (os === "linux") {
+            execFile("notify-send", [ title, message ], (err) => {
+                if (err) {
+                    fallbackBell(title, message, cb);
+                } else if (typeof cb === "function") {
+                    cb(null);
+                }
+                resolve();
+
+            });
+        } else if (os === "win32") {
             fallbackBell(title, message, cb);
-        } else if (typeof cb === "function") {
-            cb(null);
+            resolve();
+
+
+        } else if (os === "darwin") {
+            fallbackBell(title, message, cb);
+            resolve();
+
         }
     });
+
+
+
 }

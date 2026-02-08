@@ -44,7 +44,7 @@ async function main() {
         await startTimer(breakDurationNum, "Break");
     }
     notify("Timer has finished, happy rest sir😁");
-    outro("All cycles has ended, you can rest now");
+    outro("All cycles has ended, you can rest now.");
 }
 
 async function startTimer(duration, type) {
