@@ -1,9 +1,7 @@
 import pkg from "node-notifier";
 import { execFile } from "child_process";
-import { platform } from "os";
 
 const notifier = pkg;
-const OS_PLATFORM = platform();
 
 export function notify(title = "Pomodoro CLI", message = "", cb) {
     const p = new Promise((resolve, reject) => {
