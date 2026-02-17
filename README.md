@@ -1,6 +1,6 @@
 # Pomodoro CLI
 
-<img width="1026" height="625" alt="image" src="https://github.com/user-attachments/assets/600f2a56-3844-46d3-b370-e523301a3e0c" />
+<img width="835" height="625" alt="image" src="https://github.com/user-attachments/assets/600f2a56-3844-46d3-b370-e523301a3e0c" />
 
 Pomodoro CLI adalah aplikasi timer sederhana, interaktif, dan ringan yang bisa berjalan langsung di terminal (Command Line Interface).
 
