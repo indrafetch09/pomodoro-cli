@@ -1,4 +1,6 @@
-# 🍅 Pomodoro CLI
+# Pomodoro CLI
+
+<img width="1155" height="765" alt="screenshot-2026-02-17_17-05-23" src="https://github.com/user-attachments/assets/2c508727-4fe3-490a-8938-320ecca84c8b" />
 
 Pomodoro CLI adalah aplikasi timer sederhana, interaktif, dan ringan yang bisa berjalan langsung di terminal (Command Line Interface).
 
@@ -9,7 +11,7 @@ Aplikasi ini saya buat dengan tujuan belajar Javasrcipt asynchronous function, d
 
 Mohon kritik dan sarannya.
 
-## ✨ Fitur
+## Fitur
 
 - **Interactive UI:** Menggunakan `@clack/prompts` untuk tampilan yang bersih dan modern.
 - **Customizable:** Atur durasi kerja, istirahat, dan jumlah siklus (cycle) sesuai keinginan.
@@ -17,7 +19,7 @@ Mohon kritik dan sarannya.
 - **Cross-Platform:** Berjalan lancar di Windows, macOS, dan Linux.
 - **Cancel Handling:** Aman dimatikan kapan saja dengan `Ctrl+C`.
 
-## 🚀 Cara Pakai (Tanpa Install)
+## Cara Pakai (Tanpa Install)
 
 Cara termudah untuk mencoba aplikasi ini tanpa perlu menginstall apapun di komputer kamu (membutuhkan Node.js terinstall):
 
