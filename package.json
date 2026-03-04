@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "bin": {
-    "pomo": "./index.js"
+    "pomo": "./src/index.js"
   },
-  "main": "index.js",
+  "main": "/src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +18,11 @@
     "node-notifier": "^10.0.1"
   },
   "devDependencies": {
-    "@types/node-notifier": "^8.0.5"
+    "@types/node-notifier": "^8.0.5",
+    "@types/bun": "latest"
+  },
+  "private": true,
+  "peerDependencies": {
+    "typescript": "^5"
   }
 }
