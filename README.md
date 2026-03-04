@@ -45,6 +45,15 @@ Lalu ketik:
 pomo
 ```
 
-Referensi:
+## NEW
+
+- Install dengan bun:
+  https://bun.com/docs/installation
+
+```bash
+bunx github:indrafetch09/pomodoro-cli
+```
+
+source:
 
 - https://medium.com/@kiwojima/create-your-own-pomodoro-timer-for-the-command-line-using-javascript-and-clack-36a2c9361190

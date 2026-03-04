@@ -14,7 +14,6 @@ async function main() {
         }
     });
 
-
     const breakDuration = await text({
         message: "Enter break duration in minutes: ",
         placeholder: "",
@@ -22,7 +21,6 @@ async function main() {
             if (isNaN(value) || value <= 0) return "Please enter a correct number.";
         }
     });
-
 
     const cycles = await text({
         message: "Enter number of cycles: ",
