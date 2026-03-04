@@ -1,4 +1,4 @@
-# Pomodoro CLI
+# 🍅 Pomodoro CLI
 
 <img width="835" height="625" alt="pomodoro-cli" src="https://github.com/user-attachments/assets/600f2a56-3844-46d3-b370-e523301a3e0c" />
 
@@ -12,7 +12,7 @@ Aplikasi ini saya buat dengan tujuan belajar Javasrcipt asynchronous function, d
 
 Mohon kritik dan sarannya.
 
-## Fitur
+## ✨ Fitur
 
 - **Interactive UI:** Menggunakan `@clack/prompts` untuk tampilan yang bersih dan modern.
 - **Customizable:** Atur durasi kerja, istirahat, dan jumlah siklus (cycle) sesuai keinginan.
@@ -20,7 +20,7 @@ Mohon kritik dan sarannya.
 - **Cross-Platform:** Berjalan lancar di Windows, macOS, dan Linux.
 - **Cancel Handling:** Aman dimatikan kapan saja dengan `Ctrl+C`.
 
-## Cara Pakai (Tanpa Install)
+## 🚀 Cara Pakai (Tanpa Install)
 
 Cara termudah untuk mencoba aplikasi ini tanpa perlu menginstall apapun di komputer kamu (membutuhkan Node.js terinstall):
 
@@ -45,7 +45,7 @@ Lalu ketik:
 pomo
 ```
 
-### NEW
+**NEW**
 
 - Install dengan bun:
   https://bun.com/docs/installation
@@ -57,3 +57,4 @@ bunx github:indrafetch09/pomodoro-cli
 source:
 
 - https://medium.com/@kiwojima/create-your-own-pomodoro-timer-for-the-command-line-using-javascript-and-clack-36a2c9361190
+
