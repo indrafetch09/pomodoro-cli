@@ -45,7 +45,7 @@ Lalu ketik:
 pomo
 ```
 
-## NEW
+### NEW
 
 - Install dengan bun:
   https://bun.com/docs/installation
